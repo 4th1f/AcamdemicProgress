@@ -1,0 +1,28 @@
+#register
+def register():
+    lis=[]
+    log=open("login.csv","a")
+    logw=csv.writer(log)
+    user=input("Enter Name: ")
+    pas=input("Enter Password: ")
+    lis=[user,pas]
+    logw.writerow(lis)
+    log.close()
+    login()
+#Login
+def login():
+    conf=open("login.csv","r")
+    confr=csv.reader(conf)
+    ch=int(input("Choose your Function:\n(1)Login\n(2)Register\nEnter Choice: "))
+    if ch==2:
+        register()
+    elif ch==1:
+        user=input("Enter Name(Name is case sensitive): ")
+        for i in confr:
+            if i==user:
+                pas=input("Enter Password(Password is case sensitive): ")
+                if i==pas:
+                    print("Login Successful")
+                else:
+                    print("Invalid Password")
+    conf.close()
